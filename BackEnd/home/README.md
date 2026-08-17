@@ -7,24 +7,23 @@
 * The Driver: Controls the keyboard and mouse. The Driver focuses on the mechanics of writing code—syntax, formatting, implementation details, and immediate logic.
 * The Navigator: Observes the Driver in real time. The Navigator focuses on the bigger picture—evaluating design patterns, catching edge cases, thinking through test cases, and planning the next steps.
 
-# What will we do?
 # POKÉDEX - API
 
 ## Create the API (alongisde its HTTP methods)
-* GET  - - /v1/pokemons - - List all Pokemons
-* GET  - - /v1/pokemons/{id} - - Search Pokemon by ID
-* POST - -  /v1/pokemons - - Register a new Pokemon
-* PUT  - - /v1/pokemons/{id} - - Update all Pokemon data
-* DELETE  - - /v1/pokemons/{id} - - Delete Pokemon by ID
-* GET  - - /v1/pokemons?nome=pikachu - - List Pokemon by name
-* PATCH - - /v1/pokemons/{id}/nivel - - Upgrade Pokemon by iD
-* PATCH - -  /v1/pokemons/{id}/curar - - Heal Pokemon by ID
-* PUT - -  /v1/pokemons/{id}/evoluir - - Evolves the Pokemon by ID
-* PATCH - - /v1/pokemons/{id}/move - - Moves the selected Pokemon
-* PATCH - - /v1/pokemons/{id}/faint - - Faints the Pokemon
-* PATCH - - /v1/pokemons/{id}/dodge - - Makes the Pokemon dodge
-* PATCH - - /v1/pokemons/{id}/flee - - Makes the Pokemon flee from battle
-* PATCH - - /v1/pokemons/{id}/attack - - Makes the Pokemon take damage
+* GET  - - /v1/pokedex - - List all Pokemons
+* GET  - - /v1/pokedex/{id} - - Search Pokemon by ID
+* POST - -  /v1/pokedex - - Register a new Pokemon
+* PUT  - - /v1/pokedex/{id} - - Update all Pokemon data
+* DELETE  - - /v1/pokedex/{id} - - Delete Pokemon by ID
+* GET  - - /v1/pokedex?nome=pikachu - - List Pokemon by name
+* PATCH - - /v1/pokedex/{id}/nivel - - Upgrade Pokemon by iD
+* PATCH - -  /v1/pokedex/{id}/curar - - Heal Pokemon by ID
+* PUT - -  /v1/pokedex/{id}/evoluir - - Evolves the Pokemon by ID
+* PATCH - - /v1/pokedex/{id}/move - - Moves the selected Pokemon
+* PATCH - - /v1/pokedex/{id}/faint - - Faints the Pokemon
+* PATCH - - /v1/pokedex/{id}/dodge - - Makes the Pokemon dodge
+* PATCH - - /v1/pokedex/{id}/flee - - Makes the Pokemon flee from battle
+* PATCH - - /v1/pokedex/{id}/attack - - Makes the Pokemon take damage
 
 ## Pokemon Stats:
 
