@@ -14,16 +14,25 @@ public class Arena {
     private Trainer trainer;
     private Type type;
     private Leader leader;
-    private List<Pokemon> pokemons;
+    private Pokemon enemyPokemons;
+    private Object champion = "In battle";
 
     public Arena(String name,
-                 Trainer trainer, Type type, Leader leader, List<Pokemon> pokemons) {
+                 Trainer trainer, Type type, Leader leader, Pokemon pokemons) {
         this.id = nextId++;
         this.name = name;
         this.trainer = trainer;
         this.type = type;
         this.leader = leader;
-        this.pokemons = pokemons;
+        this.enemyPokemons = pokemons;
+    }
+
+    public Object getChampion() {
+        return champion;
+    }
+
+    public void setChampion(Object champion) {
+        this.champion = champion;
     }
 
     public int getId() {
@@ -66,11 +75,11 @@ public class Arena {
         this.leader = leader;
     }
 
-    public List<Pokemon> getPokemons() {
-        return pokemons;
+    public Pokemon getPokemons() {
+        return enemyPokemons;
     }
 
-    public void setPokemons(List<Pokemon> pokemons) {
-        this.pokemons = pokemons;
+    public void setPokemons(Pokemon pokemons) {
+        this.enemyPokemons = pokemons;
     }
 }

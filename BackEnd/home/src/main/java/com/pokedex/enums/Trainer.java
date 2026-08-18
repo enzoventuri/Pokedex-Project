@@ -1,5 +1,9 @@
 package com.pokedex.enums;
 
+import com.pokedex.exceptions.TrainerNotFound;
+
+import java.lang.annotation.Target;
+
 public enum Trainer {
     ODRAUDE_TREFFEG(0), OZNE_IRUTNEV(1);
 
@@ -17,6 +21,17 @@ public enum Trainer {
         }
 
         throw new RuntimeException("Could not find Trainer");
+    }
+
+    public static Trainer getTrainerFromNumber(int number){
+
+        for(Trainer t: Trainer.values()){
+            if(t.getId() == number){
+                return t;
+            }
+        }
+        throw new TrainerNotFound("Trainer not found!");
+
     }
 
     public int getId() {

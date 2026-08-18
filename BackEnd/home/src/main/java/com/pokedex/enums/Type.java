@@ -1,7 +1,7 @@
 package com.pokedex.enums;
 
 public enum Type {
-    FIRE, WATER, ELECTRICITY, STEEL, ICE, FAIRY, DRAGON, SHADOW, ROCK, NORMAL, GRASS;
+    FIRE, WATER, ELECTRIC, STEEL, ICE, FAIRY, DRAGON, SHADOW, ROCK, NORMAL, GRASS, GHOST, PSYCHIC, FIGHTING, BUG, DARK, POISON, FLYING, PLANT;
 
     public static Type getTypeFromName(String name) {
         for (Type t : Type.values()) {

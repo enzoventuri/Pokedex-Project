@@ -2,6 +2,8 @@ package com.pokedex.model;
 
 import com.pokedex.enums.Evolutions;
 import com.pokedex.enums.Type;
+import com.pokedex.exceptions.EvolutionProhibited;
+import com.pokedex.exceptions.PokemonFainted;
 
 public class Pokemon {
     static int nextId = 1;
@@ -54,14 +56,6 @@ public class Pokemon {
         return evolution;
     }
 
-    public void setEvolution(Evolutions evolution) {
-        this.evolution = evolution;
-    }
-
-    public void addLevel(int level) {
-        this.level += level;
-    }
-
     public String getNickname() {
         return nickname;
     }
@@ -110,10 +104,6 @@ public class Pokemon {
         return health;
     }
 
-    public void setHealth(double health) {
-        this.health = health;
-    }
-
     public double getAttack() {
         return attack;
     }
@@ -145,4 +135,65 @@ public class Pokemon {
     public void setClassification(String classification) {
         this.classification = classification;
     }
+
+
+    public String evolvePokemon() {
+        int level = this.evolution.getMinimumLevels();
+        Evolutions evolution = Evolutions.isEvolved(this.getLevel());
+        if(this.level > level && this.evolution != evolution){
+
+            this.evolution = evolution;
+
+            return this.name + " has evolved to " + this.evolution;
+
+        }
+
+        throw new EvolutionProhibited("Your pokemon doesn´t have enough levels to evolve");
+
+    }
+
+    public String addLevel(int level) {
+        this.level += level;
+        return this.name + " has leveled up " + level + " levels!";
+    }
+
+
+    public boolean changeHealth(double health) {
+
+        if(this.health <= 0){
+
+            return false;
+
+        }
+
+        this.health += health;
+
+        if(this.health < 0){
+            this.health = 0;
+        }
+
+        return true;
+    }
+
+    public String movePokemon(){
+        return this.name + " has moved!";
+    }
+
+    public String faintPokemon(){
+        return this.name + " has fainted!";
+    }
+
+    public String dodgePokemon(){
+        return this.name + " has dodge the attack!";
+    }
+
+    public boolean flee() {
+        return true;
+    }
+
+    public double attack() {
+        return this.attack;
+    }
+
+
 }

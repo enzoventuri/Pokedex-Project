@@ -1,5 +1,7 @@
 package com.pokedex.enums;
 
+import com.pokedex.exceptions.ItemNotFound;
+
 public enum Items {
     BALL, MEDICINE, EVOLUTION_STONE, BERRY, TM_HM, TREASURE;
 
@@ -10,7 +12,7 @@ public enum Items {
             }
         }
 
-        throw new RuntimeException("Could not find Item");
+        throw new ItemNotFound("Could not find Item");
     }
 
     @Override
