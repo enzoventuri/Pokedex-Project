@@ -1,5 +1,6 @@
 package com.pokedex.model;
 
+import com.pokedex.enums.Evolutions;
 import com.pokedex.enums.Type;
 
 public class Pokemon {
@@ -7,6 +8,8 @@ public class Pokemon {
 
     private int id;
     private String name;
+    private int level;
+    private Evolutions evolution;
     private String nickname;
     private int number;
     private Type type;
@@ -17,11 +20,13 @@ public class Pokemon {
     private double defense;
     private String classification;
 
-    public Pokemon(String name, int number, String nickname,
+    public Pokemon(String name, int number, int level, Evolutions evolution, String nickname,
                    Type type, Type type2, double health, double attack,
                    int speed, double defense, String classification) {
         this.id = nextId++;
         this.name = name;
+        this.level = level;
+        this.evolution = evolution;
         this.nickname = nickname;
         this.number = number;
         this.type = type;
@@ -35,6 +40,34 @@ public class Pokemon {
 
     public int getId() {
         return id;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public Evolutions getEvolution() {
+        return evolution;
+    }
+
+    public void setEvolution(Evolutions evolution) {
+        this.evolution = evolution;
+    }
+
+    public void addLevel(int level) {
+        this.level += level;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public void setId(int id) {
