@@ -79,7 +79,7 @@ public class BattleController {
     /**
      * Make an attack in the battle
      *
-     * <p>Attack the opponent pokemon and receive some attack</p>
+     * <p>Attack the opponent's Pokemon and receive some attack</p>
      *
      * @return A String that resumes the battle statistics
      */
@@ -90,7 +90,7 @@ public class BattleController {
     @ApiResponses({
             @ApiResponse(
                     responseCode = "200",
-                    description = "Attack conclued"
+                    description = "Attack concluded"
             ),
             @ApiResponse(
                     responseCode = "404",
@@ -116,18 +116,18 @@ public class BattleController {
     /**
      * To flee the battle
      *
-     * <p>The pokemon fleed the battle</p>
+     * <p>The pokemon fled the battle</p>
      *
-     * @return String discribig the end of the battle
+     * @return String describes the end of the battle
      */
     @Operation(
             summary = "Flee in the middle of the battle",
-            description = "Before battles continues the pokemon fleeyed"
+            description = "Before battles continues the Pokemon fled"
     )
     @ApiResponses({
             @ApiResponse(
                     responseCode = "200",
-                    description = "Fleeded maked"
+                    description = "Successful flee attempt"
             ),
             @ApiResponse(
                     responseCode = "404",

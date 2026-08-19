@@ -12,6 +12,7 @@
       <list>
         <option value="$PROJECT_DIR$/BackEnd/home/pom.xml" />
         <option value="$PROJECT_DIR$/BackEnd/produto/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
