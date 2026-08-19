@@ -16,6 +16,7 @@ public class Arena {
     private Leader leader;
     private Pokemon enemyPokemons;
     private Object champion = "In battle";
+    private Pokemon someoneDodge = null;
 
     public Arena(String name,
                  Trainer trainer, Type type, Leader leader, Pokemon pokemons) {
@@ -25,6 +26,14 @@ public class Arena {
         this.type = type;
         this.leader = leader;
         this.enemyPokemons = pokemons;
+    }
+
+    public Pokemon getSomeoneDodge() {
+        return someoneDodge;
+    }
+
+    public void setSomeoneDodge(Pokemon someoneDodge) {
+        this.someoneDodge = someoneDodge;
     }
 
     public Object getChampion() {

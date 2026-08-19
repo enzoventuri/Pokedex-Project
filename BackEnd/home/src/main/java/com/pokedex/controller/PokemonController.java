@@ -18,7 +18,7 @@ import java.util.List;
  */
 @Tag(
     name = "Pokemon Controller",
-    description = "Controller responsible for HTTP interactions"
+    description = "Controller responsible for HTTP Pokemons interactions"
 )
 @RestController
 @RequestMapping("/v1/pokedex")

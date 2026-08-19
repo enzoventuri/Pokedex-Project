@@ -1,16 +1,27 @@
 package com.pokedex.controller;
-
 import com.pokedex.data.DataBase;
-import com.pokedex.enums.Trainer;
 import com.pokedex.model.Arena;
 import com.pokedex.model.Pokemon;
 import com.pokedex.service.BattleService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Random;
 
+/**
+ * Controller responsible for Battle interaction/status
+ *
+ * @author Eduardo Geffert da Silva and Enzo Venturi
+ * @since v0.1
+ */
+@Tag(
+        name = "Battle Controller",
+        description = "Controller responsible for HTTP Battles interactions"
+)
 @RestController
 @RequestMapping("v1/pokedex/game/battle")
 public class BattleController {
@@ -27,6 +38,27 @@ public class BattleController {
 
     }
 
+    /**
+     * Start a Single Battle
+     *
+     * <p>Start only a battle per time</p>
+     *
+     * @return String showing the Trainer, Leadaer and Arena
+     */
+    @Operation(
+            summary = "Start a battle",
+            description = "Start a single battle per time"
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Battle started"
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Server side error"
+            )
+    })
     @PostMapping("/start")
     public ResponseEntity<String> startBattle(){
 
@@ -44,40 +76,72 @@ public class BattleController {
         }
     }
 
+    /**
+     * Make an attack in the battle
+     *
+     * <p>Attack the opponent pokemon and receive some attack</p>
+     *
+     * @return A String that resumes the battle statistics
+     */
+    @Operation(
+            summary = "All Pokemons in inventory",
+            description = "Lists every Pokemon in bag"
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Attack conclued"
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Battle not found"
+            )
+    })
     @PatchMapping("/attack")
     public ResponseEntity<String> attackEnemy(){
 
         try {
 
-            Arena arena = service.attackOpponent();
-            Object ended = arena.getChampion();
+            String message = service.attackOpponent();
 
-            if(!ended.equals("In battle")){
-                if (ended.getClass().equals(Trainer.class)) {
-                    return ResponseEntity.ok(arena.getPokemons().faintPokemon()
-                            + "\nThe game is over! \nChampion: " + arena.getChampion());
-
-                }
-
-                return ResponseEntity.ok( DataBase.activePokemon.faintPokemon()
-                        + "\nThe game is over! \nChampion: " + arena.getChampion());
-
-            }
-
-            return ResponseEntity.ok(" Round Statistics \n\n Your pokemon:\n" +
-                    "\nName: " +  DataBase.activePokemon.getName()
-                    + "\nHealth: " + DataBase.activePokemon.getHealth()
-                    + "\nAttack: " + DataBase.activePokemon.attack()
-                    + "\n\nOponent Pokemon: "
-                    + "\nName: " + arena.getPokemons().getName()
-                    + "\nHealth: " + arena.getPokemons().getHealth()
-                    + "\nAttack: " + arena.getPokemons().getAttack()
-                    );
+            return ResponseEntity.ok(message);
 
         }catch (RuntimeException e){
 
             return ResponseEntity.notFound().build();
 
+        }
+    }
+
+    /**
+     * To flee the battle
+     *
+     * <p>The pokemon fleed the battle</p>
+     *
+     * @return String discribig the end of the battle
+     */
+    @Operation(
+            summary = "Flee in the middle of the battle",
+            description = "Before battles continues the pokemon fleeyed"
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Fleeded maked"
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Battle not found"
+            )
+    })
+    @PatchMapping("/flee")
+    public ResponseEntity<String> fleeBattle(){
+        try {
+
+            return ResponseEntity.ok(service.fleeBattle());
+
+        }catch (RuntimeException e){
+            return ResponseEntity.notFound().build();
         }
     }
 

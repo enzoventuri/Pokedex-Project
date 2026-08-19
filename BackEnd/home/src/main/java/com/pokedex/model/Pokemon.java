@@ -187,8 +187,8 @@ public class Pokemon {
         return this.name + " has dodge the attack!";
     }
 
-    public boolean flee() {
-        return true;
+    public String flee() {
+        return this.name + " has fleeded the battle";
     }
 
     public double attack() {
