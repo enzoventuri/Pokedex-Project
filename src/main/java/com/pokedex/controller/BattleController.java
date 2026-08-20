@@ -1,5 +1,4 @@
 package com.pokedex.controller;
-import com.pokedex.data.DataBase;
 import com.pokedex.model.Arena;
 import com.pokedex.model.Pokemon;
 import com.pokedex.service.BattleService;

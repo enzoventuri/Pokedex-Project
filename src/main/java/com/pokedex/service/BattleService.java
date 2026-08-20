@@ -1,5 +1,4 @@
 package com.pokedex.service;
-import com.pokedex.data.DataBase;
 import com.pokedex.enums.Leader;
 import com.pokedex.enums.Trainer;
 import com.pokedex.enums.Type;
@@ -13,10 +12,12 @@ import java.util.Random;
 @Service
 public class BattleService {
 
+
+
     public Arena startBattle(){
 
         if(DataBase.arena != null){
-            if (!DataBase.arena.getChampion().equals("In battle")) {
+            if (DataBase.arena.getChampion() != null) {
                 DataBase.arena = null;
             } else {
                 throw new AlreadyInBattle("You are already in a battle!");

@@ -1,14 +1,13 @@
 package com.pokedex.service;
-import com.pokedex.data.DataBase;
-import com.pokedex.enums.Evolutions;
-import com.pokedex.enums.Type;
+import com.pokedex.exceptions.NoWildPokemonRemaining;
 import com.pokedex.exceptions.PokemonNotExist;
 import com.pokedex.model.Pokemon;
+import com.pokedex.repository.PokemonRepository;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Service responsible for Pokemon business rules
@@ -23,12 +22,25 @@ import java.util.Random;
 @Service
 public class PokemonService {
 
-    public PokemonService() {
-      Pokemon pokemon4 = DataBase.listOfWildPokemons.get(new Random().nextInt(DataBase.listOfWildPokemons.size()));
-      DataBase.activePokemon = pokemon4;
+    private PokemonRepository repository;
+
+    public PokemonService(PokemonRepository repository) {
+        this.repository = repository;
     }
 
-    public Pokemon getActivePokemon(int id){
+    public ArrayList<Pokemon> getWildPokemons() {
+        List<Pokemon> pokemons = repository.findAll();
+        ArrayList<Pokemon> pokemonsArray = new ArrayList<>(pokemons);
+
+        if (pokemonsArray.isEmpty()) {
+            throw new NoWildPokemonRemaining("No Pokemons Remaining!");
+        }
+
+        return pokemonsArray;
+    }
+
+
+    public PokemonRepository getActivePokemon(int id){
         if(DataBase.activePokemon.getId() != id){
             throw new PokemonNotExist("Pokemon is not on the active spot!");
         }
@@ -37,8 +49,8 @@ public class PokemonService {
 
     }
 
-    public Pokemon checkIfPokemonExists(int id){
-        for (Pokemon p : DataBase.pokemonInBag) {
+    public PokemonRepository checkIfPokemonExists(int id){
+        for (PokemonRepository p : DataBase.pokemonInBag) {
             if (p.getId() == id) {
                 return p;
             }
@@ -47,7 +59,7 @@ public class PokemonService {
         throw new PokemonNotExist("Pokemon not exist or not active");
     }
 
-    public String levelUp(Pokemon pokemon, int levelsToBeAdded) {
+    public String levelUp(PokemonRepository pokemon, int levelsToBeAdded) {
         if (pokemon == null) {
             throw new PokemonNotExist("Invalid Pokemon!");
         }
@@ -55,16 +67,16 @@ public class PokemonService {
         return pokemon.addLevel(levelsToBeAdded);
     }
 
-    public String evolvePokemon(Pokemon pokemon){
+    public String evolvePokemon(PokemonRepository pokemon){
 
         return pokemon.evolvePokemon();
     }
 
-    public List<Pokemon> getPokemons() {
+    public List<PokemonRepository> getPokemons() {
         return DataBase.pokemonInBag;
     }
 
-    public Pokemon healPokemon(Pokemon pokemon, double health){
+    public PokemonRepository healPokemon(PokemonRepository pokemon, double health){
 
         pokemon.changeHealth(health);
 

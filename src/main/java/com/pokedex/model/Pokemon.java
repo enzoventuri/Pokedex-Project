@@ -1,31 +1,58 @@
 package com.pokedex.model;
-
 import com.pokedex.enums.Evolutions;
 import com.pokedex.enums.Type;
 import com.pokedex.exceptions.EvolutionProhibited;
-import com.pokedex.exceptions.PokemonFainted;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "pokemon")
 public class Pokemon {
-    static int nextId = 1;
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private int level;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Evolutions evolution;
+
+    @Column(nullable = false)
     private String nickname;
+
+    @Column(nullable = false)
     private int number;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Type type;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Type type2;
+
+    @Column(nullable = false)
     private double health;
+
+    @Column(nullable = false)
     private double attack;
+
+    @Column(nullable = false)
     private int speed;
+
+    @Column(nullable = false)
     private double defense;
+
+    @Column(nullable = false)
     private String classification;
 
     public Pokemon(String name, int number, int level, Evolutions evolution, String nickname,
                    Type type, Type type2, double health, double attack,
                    int speed, double defense, String classification) {
-        this.id = nextId++;
         this.name = name;
         this.level = level;
         this.evolution = evolution;
@@ -39,6 +66,8 @@ public class Pokemon {
         this.defense = defense;
         this.classification = classification;
     }
+
+    public Pokemon() {}
 
     public int getId() {
         return id;

@@ -1,32 +1,50 @@
 package com.pokedex.model;
-
 import com.pokedex.enums.Leader;
 import com.pokedex.enums.Trainer;
 import com.pokedex.enums.Type;
+import jakarta.persistence.*;
 
-import java.util.List;
-
+@Entity()
+@Table(name = "arena")
 public class Arena {
-    static int nextId = 1;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(nullable = false)
     private String name;
+
+    @Enumerated(EnumType.STRING)
     private Trainer trainer;
+
+    @Enumerated(EnumType.STRING)
     private Type type;
+
+    @Enumerated(EnumType.STRING)
     private Leader leader;
+
+    @OneToOne
+    @JoinColumn(name = "pokemon_Id")
     private Pokemon enemyPokemons;
-    private Object champion = "In battle";
+
+    @Column
+    private Object champion = null;
+
+    @OneToOne
+    @JoinColumn(name = "pokemon_Id")
     private Pokemon someoneDodge = null;
 
     public Arena(String name,
                  Trainer trainer, Type type, Leader leader, Pokemon pokemons) {
-        this.id = nextId++;
         this.name = name;
         this.trainer = trainer;
         this.type = type;
         this.leader = leader;
         this.enemyPokemons = pokemons;
     }
+
+    public Arena() { }
 
     public Pokemon getSomeoneDodge() {
         return someoneDodge;

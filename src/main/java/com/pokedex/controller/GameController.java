@@ -1,6 +1,7 @@
 package com.pokedex.controller;
 
 import com.pokedex.enums.Items;
+import com.pokedex.model.Game;
 import com.pokedex.model.Pokemon;
 import com.pokedex.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,18 @@ public class GameController {
 
     @Autowired
     public GameController(GameService gameService){this.service = gameService;}
+
+    @PostMapping("/start")
+    public ResponseEntity<Game> newGame(){
+
+        try {
+
+        }catch (RuntimeException e){
+
+
+        }
+
+    }
 
     @GetMapping("/team")
     public ResponseEntity<List<Pokemon>> getTeam(){

@@ -26,11 +26,8 @@ public class PokemonController {
 
     private PokemonService service;
 
-
     @Autowired
-    public PokemonController(PokemonService service) {
-        this.service = service;
-    }
+    public PokemonController(PokemonService service) {this.service = service;}
 
     /**
      * List of all Pokemons in bag
